@@ -1,0 +1,38 @@
+{
+  "name": "gulp-env-loader",
+  "version": "1.0.0",
+  "description": "一个从项目的配置文件中加载环境变量的gulp插件。它不仅使用方便简单，还支持根据不同加载不同的配置文件及自动解析文件内的环境变量。",
+  "main": "./libs/index.js",
+  "files": [
+    "libs"
+  ],
+  "scripts": {
+    "dev": "npx gulp --mode=development",
+    "build": "npx gulp --mode=production"
+  },
+  "engines": {
+    "node": ">=12"
+  },
+  "keywords": [
+    "gulp-env",
+    "env loader",
+    "load env",
+    "dotenv",
+    ".env",
+    "environment",
+    "variables",
+    "gulp-plugin"
+  ],
+  "author": "Mervin <mengqing723@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "dotenv-expand": "^10.0.0",
+    "minimist": "^1.2.8",
+    "plugin-error": "^2.0.1",
+    "through2": "^4.0.2"
+  },
+  "devDependencies": {
+    "gulp": "^4.0.2"
+  }
+}
