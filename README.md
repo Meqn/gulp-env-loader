@@ -1,19 +1,21 @@
 # gulp-env-loader
 
-一个用于加载环境变量并替换文件内容中的环境变量的 gulp 插件。  
-它可以从指定的配置文件中加载环境变量，也可以从默认的 `.env` 文件中加载环境变量。
+[ [English](./README.md) | [中文](./README.zh_CN.md) ]
 
-它使用 `dotenv` 从你的 环境目录 中的下列文件加载额外的环境变量，并且它还将静态替换出现在文件内的环境变量。
+A gulp plugin for loading environment variables and replacing them in file contents.  
+It can load environment variables from a specified configuration file or from the default `.env` file.
+
+It uses `dotenv` to load additional environment variables from the following files in your environment directory, and it also statically replaces environment variables that appear in the file.
 
 ```
-.env                # 所有情况下都会加载
-.env.local          # 所有情况下都会加载，但会被 git 忽略
-.env.[mode]         # 只在指定模式下加载
-.env.[mode].local   # 只在指定模式下加载，但会被 git 忽略
+.env                # loaded in all cases
+.env.local          # loaded in all cases, but ignored by git
+.env.[mode]         # only loaded in specified mode
+.env.[mode].local   # only loaded in specified mode, but ignored by git
 ```
 
 
-> git忽略 `.*.local`，还需要在项目的 `.gitignore` 文件中添加
+> ignores `.*.local`, so you also need to add it to your project's `.gitignore` file:
 ```
 # local env files
 .env.local
@@ -35,20 +37,20 @@ npm install -D gulp-env-loader
 
 ## Usage
 
-1. 在项目根目录下创建 `.env` 文件，也可以根据不同的环境创建不同的 `.env` 文件，比如 `.env.development`, `.env.production` 等。
+1. Create a `.env` file in the root directory of your project, or create different `.env` files for different environments, such as `.env.development`, `.env.production`, etc.
 
 ```yml
-# .env 配置
+# .env configuration
 APP_MODE="development"
 APP_API="http://test-api.com"
 ```
 
-2. 创建 `gulpfile.js` 文件
+2. Create `gulpfile.js`
 ```js
 const gulp = require('gulp')
-const envInject = require('gulp-env-loader')() //!建议放在前面，并立即执行
+const envInject = require('gulp-env-loader')() //!recommended to put at the beginning and execute immediately
 
-// 输出配置的环境变量
+// Output the configured environment variables
 console.log('env', envInject.env)
 
 gulp.task('build', function() {
@@ -58,7 +60,8 @@ gulp.task('build', function() {
 })
 ```
 
-3. 运行时可以加上 环境模式参数`mode`, 这样会自动加载对应的环境变量配置文件。
+1. You can add the runtime parameter `mode` at runtime, which will automatically load the corresponding environment variable configuration file.
+
 ```
 gulp build --mode=development
 ```
@@ -66,24 +69,25 @@ gulp build --mode=development
 
 
 ## API
-```js
+```ts
 require('gulp-env-loader')([config])
 ```
 
-### 参数
-可选的配置对象或配置文件路径。  
-如果是字符串，则表示配置文件路径。如果是对象，则可以包含以下属性：
-- `path` : 配置文件路径, 默认为 `.env` 
-- `mode` : 环境模式名称。
-- `modekey` : 环境模式键名, 默认为 `mode`
+### config
+An optional configuration object or configuration file path.  
+If it is a string, it represents the configuration file path. If it is an object, it can contain the following properties:
+- `path`: Configuration file path, default is `.env`
+- `mode`: Environment mode name.
+- `modekey`: Environment mode key name, default is `mode`
 
 
-### 返回值
+### Return value
 ```js
 envInject([option])
 ```
-创建一个 through2 流，用于替换文件内容中的环境变量。
-- `isVar` : 将环境变量替换为对应值的字符串表示。默认为 `true`
+Creates a through2 stream for replacing environment variables in file contents.
+
+- `isVar`: Replaces environment variables with their corresponding string representations. Default is `true`.
 
 
 
