@@ -40,9 +40,15 @@ npm install -D gulp-env-loader
 1. 在项目根目录下创建 `.env` 文件，也可以根据不同的环境创建不同的 `.env` 文件，比如 `.env.development`, `.env.production` 等。
 
 ```yml
-# .env 配置
+# .env 文件配置
 APP_MODE="development"
-APP_API="http://test-api.com"
+APP_API_URL="http://test-api.com"
+```
+
+```yml
+# .env.production 文件配置
+APP_MODE="production"
+APP_API_URL="https://api.com"
 ```
 
 2. 创建 `gulpfile.js` 文件
@@ -62,9 +68,23 @@ gulp.task('build', function() {
 
 3. 运行时可以加上 环境模式参数`mode`, 这样会自动加载对应的环境变量配置文件。
 ```
-gulp build --mode=development
+gulp build --mode=production
 ```
 
+4. 输出结果
+
+源文件 `./src/api.js`
+```js
+export function userLogin(params) {
+  return http.post(`${process.env.APP_API_URL}/user/login`, params)
+}
+```
+输出文件 `./dist/api.js`
+```js
+export function userLogin(params) {
+  return http.post(`https://api.com/user/login`, params)
+}
+```
 
 
 ## API
@@ -85,7 +105,7 @@ require('gulp-env-loader')([config])
 envInject([option])
 ```
 创建一个 through2 流，用于替换文件内容中的环境变量。
-- `isVar` : 将环境变量替换为对应值的字符串表示。默认为 `true`
+- `isVar` : 将环境变量替换为对应值的字符串表示 (加单引号)。默认为 `true`
 
 
 

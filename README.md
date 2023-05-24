@@ -34,7 +34,6 @@ npm install -D gulp-env-loader
 
 
 
-
 ## Usage
 
 1. Create a `.env` file in the root directory of your project, or create different `.env` files for different environments, such as `.env.development`, `.env.production`, etc.
@@ -42,7 +41,13 @@ npm install -D gulp-env-loader
 ```yml
 # .env configuration
 APP_MODE="development"
-APP_API="http://test-api.com"
+APP_API_URL="http://test-api.com"
+```
+
+```yml
+# .env.production configuration
+APP_MODE="production"
+APP_API_URL="https://api.com"
 ```
 
 2. Create `gulpfile.js`
@@ -60,10 +65,25 @@ gulp.task('build', function() {
 })
 ```
 
-1. You can add the runtime parameter `mode` at runtime, which will automatically load the corresponding environment variable configuration file.
+3. You can add the runtime parameter `mode` at runtime, which will automatically load the corresponding environment variable configuration file.
 
 ```
-gulp build --mode=development
+gulp build --mode=production
+```
+
+4. Output results
+
+Source file: `./src/api.js`
+```js
+export function userLogin(params) {
+  return http.post(`${process.env.APP_API_URL}/user/login`, params)
+}
+```
+Output file: `./dist/api.js`
+```js
+export function userLogin(params) {
+  return http.post(`https://api.com/user/login`, params)
+}
 ```
 
 
@@ -87,7 +107,7 @@ envInject([option])
 ```
 Creates a through2 stream for replacing environment variables in file contents.
 
-- `isVar`: Replaces environment variables with their corresponding string representations. Default is `true`.
+- `isVar`: Replaces environment variables with their corresponding string representations (Single quotation marks). Default is `true`.
 
 
 
