@@ -31,7 +31,16 @@ function replaceContent(content, env, isVar) {
   return content
 }
 
-module.exports = function (config = {}) {
+/**
+ * generate a function to inject environment variables into files
+ *
+ * @param {object | string} [config={}] - The configuration object.
+ * @param {string} [config.mode] - The mode.
+ * @param {string} [config.modeKey] - The mode-key.
+ * @param {string} [config.path] - The .env file path.
+ * @return {function} The envInject function.
+ */
+module.exports = function envLoader (config = {}) {
   const conf = {
     mode: argv.mode
   }
@@ -44,6 +53,13 @@ module.exports = function (config = {}) {
 
   const env = loadEnv(conf)
 
+  /**
+   * Inject environment variables into file contents.
+   *
+   * @param {Object} options - The options for the transform stream (default: {}).
+   * @param {boolean} options.isVar - A flag indicating whether to replace variables in the file contents (default: true).
+   * @return {Stream} - The transform stream.
+   */
   function envInject(options = {}) {
     return through.obj((file, enc, callback) => {
       if (file.isNull()) {

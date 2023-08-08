@@ -1,27 +1,30 @@
 /// <reference types="node" />
 
-interface IConfig {
+interface EnvConfig {
   /**
    * The .env file path
    */
-  path?: string,
+  path?: string;
   /**
    * The mode to use
    */
-  mode?: string,
+  mode?: string;
   /**
    * The key to use for the mode
    */
-  modekey?: string,
+  modeKey?: string;
 }
 
-interface IOptions {
+interface EnjectOptions {
   /**
    * Whether or not to use quotes around the value
    */
-  isVar: boolean
+  isVar?: boolean;
 }
 
-declare function envLoader(config?: IConfig | string): (options?: IOptions) => NodeJS.ReadWriteStream;
+declare function envLoader(config?: EnvConfig | string): {
+  (options?: EnjectOptions): NodeJS.ReadWriteStream;
+  env: object;
+};
 
-export { envLoader as default }
+export = envLoader;

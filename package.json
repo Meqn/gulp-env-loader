@@ -1,12 +1,11 @@
 {
   "name": "gulp-env-loader",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "A gulp plugin for loading environment variables and replacing them in the contents of files.",
   "main": "./libs/index.js",
   "types": "./types/index.d.ts",
   "files": [
-    "libs",
-    "types"
+    "libs"
   ],
   "scripts": {
     "dev": "npx gulp --mode=development",
@@ -36,6 +35,7 @@
     "url": "https://github.com/Meqn/gulp-env-loader/issues"
   },
   "dependencies": {
+    "@types/node": "*",
     "dotenv": "^16.0.3",
     "dotenv-expand": "^10.0.0",
     "minimist": "^1.2.8",
@@ -43,7 +43,6 @@
     "through2": "^4.0.2"
   },
   "devDependencies": {
-    "@types/node": "^18.16.1",
     "gulp": "^4.0.2"
   }
 }
