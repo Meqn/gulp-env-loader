@@ -96,9 +96,9 @@ require('gulp-env-loader')([config])
 ### config
 An optional configuration object or configuration file path.  
 If it is a string, it represents the configuration file path. If it is an object, it can contain the following properties:
-- `path`: Configuration file path, default is `.env`
-- `mode`: Environment mode name.
-- `modekey`: Environment mode key name, default is `mode`
+- `path` - (`string`) Configuration file path, default is `.env`
+- `mode` - (`string`) Environment mode name.
+- `modekey` - (`string`) Environment mode key name, default is `mode`
 
 
 ### Return value
@@ -107,7 +107,8 @@ envInject([option])
 ```
 Creates a through2 stream for replacing environment variables in file contents.
 
-- `isVar`: Replaces environment variables with their corresponding string representations (Single quotation marks). Default is `true`.
+- `isVar` - (`boolean`) Replaces environment variables with their corresponding string representations (Single quotation marks). Default is `true`.
+- `env` - (`object`) Additional Environment Variables. 
 
 
 

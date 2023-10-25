@@ -95,9 +95,9 @@ require('gulp-env-loader')([config])
 ### 参数 config
 可选的配置对象或配置文件路径。  
 如果是字符串，则表示配置文件路径。如果是对象，则可以包含以下属性：
-- `path` : 配置文件路径, 默认为 `.env` 
-- `mode` : 环境模式名称。
-- `modekey` : 环境模式键名, 默认为 `mode`
+- `path` - (`string`) 配置文件路径, 默认为 `.env` 
+- `mode` - (`string`) 环境模式名称。
+- `modekey` - (`string`) 环境模式键名, 默认为 `mode`
 
 
 ### 返回值
@@ -105,8 +105,8 @@ require('gulp-env-loader')([config])
 envInject([option])
 ```
 创建一个 through2 流，用于替换文件内容中的环境变量。
-- `isVar` : 将环境变量替换为对应值的字符串表示 (加单引号)。默认为 `true`
-
+- `isVar` - (`boolean`) 将环境变量替换为对应值的字符串表示 (加单引号)。默认为 `true`
+- `env` - (`object`) 额外的环境变量对象
 
 
 ## Thanks
