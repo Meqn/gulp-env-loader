@@ -58,6 +58,7 @@ module.exports = function envLoader (config = {}) {
    *
    * @param {Object} options - The options for the transform stream (default: {}).
    * @param {boolean} options.isVar - A flag indicating whether to replace variables in the file contents (default: true).
+   * @param {Object} options.env - Additional Environment Variables
    * @return {Stream} - The transform stream.
    */
   function envInject(options = {}) {
@@ -72,7 +73,7 @@ module.exports = function envLoader (config = {}) {
 
       try {
         const contents = file.contents.toString(enc)
-        const replacedContents = replaceContent(contents, env, options.isVar ?? true)
+        const replacedContents = replaceContent(contents, Object.assign({}, env, options.env), options.isVar ?? true)
         file.contents = Buffer.from(replacedContents)
       } catch (err) {
         return callback(new PluginError(PLUGIN_NAME, err))

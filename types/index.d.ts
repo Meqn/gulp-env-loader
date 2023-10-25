@@ -20,6 +20,10 @@ interface EnjectOptions {
    * Whether or not to use quotes around the value
    */
   isVar?: boolean;
+  /**
+   * Additional environment variables
+   */
+  env?: object;
 }
 
 declare function envLoader(config?: EnvConfig | string): {
