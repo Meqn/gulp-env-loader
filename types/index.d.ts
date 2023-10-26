@@ -13,6 +13,10 @@ interface EnvConfig {
    * The key to use for the mode
    */
   modeKey?: string;
+  /**
+   * Turn off writing to process.env
+   */
+  ignoreProcessEnv?: boolean;
 }
 
 interface EnjectOptions {

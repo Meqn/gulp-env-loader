@@ -30,6 +30,7 @@ function getEnvFiles(mode, envDir) {
  * @param {object | string} config 配置
  * @param {string} config.path 文件路径
  * @param {string} config.mode 模式
+ * @param {boolean} config.ignoreProcessEnv 是否写入 process.env
  */
 function loadEnv(config = {}) {
   let conf = {}
@@ -63,7 +64,7 @@ function loadEnv(config = {}) {
     })
   )
 
-  const result = expand({ parsed })
+  const result = expand({ parsed, ignoreProcessEnv: conf.ignoreProcessEnv })
   if (result.error) {
     throw result.error
   }

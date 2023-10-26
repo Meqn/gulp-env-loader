@@ -38,17 +38,20 @@ function replaceContent(content, env, isVar) {
  * @param {string} [config.mode] - The mode.
  * @param {string} [config.modeKey] - The mode-key.
  * @param {string} [config.path] - The .env file path.
+ * @param {boolean} [config.ignoreProcessEnv] - Turn off writing to process.env
  * @return {function} The envInject function.
  */
 module.exports = function envLoader (config = {}) {
-  const conf = {
-    mode: argv.mode
+  let conf = {
+    mode: argv[config.modeKey || 'mode'],
+    ignoreProcessEnv: false
   }
-  if (config && typeof config === 'object') {
-    conf.mode = config.mode ?? argv[config.modeKey || 'mode']
-    conf.path = config.path
-  } else if (typeof config === 'string') {
-    conf.path = config
+  if (config) {
+    if (typeof config === 'string') {
+      conf.path = config
+    } else if (typeof config === 'object') {
+      conf = Object.assign({}, conf, config)
+    }
   }
 
   const env = loadEnv(conf)
