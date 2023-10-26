@@ -30,7 +30,7 @@
 npm install -D gulp-env-loader
 ```
 
-> `Node.js > 12`
+> `Node.js > 14`
 
 
 
@@ -98,6 +98,7 @@ require('gulp-env-loader')([config])
 - `path` - (`string`) 配置文件路径, 默认为 `.env` 
 - `mode` - (`string`) 环境模式名称。
 - `modekey` - (`string`) 环境模式键名, 默认为 `mode`
+- - `ignoreProcessEnv` - (`boolean`) 是否写入 `process.env`
 
 
 ### 返回值

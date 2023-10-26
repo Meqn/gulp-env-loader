@@ -99,6 +99,7 @@ If it is a string, it represents the configuration file path. If it is an object
 - `path` - (`string`) Configuration file path, default is `.env`
 - `mode` - (`string`) Environment mode name.
 - `modekey` - (`string`) Environment mode key name, default is `mode`
+- `ignoreProcessEnv` - (`boolean`) Turn off writing to `process.env`
 
 
 ### Return value
