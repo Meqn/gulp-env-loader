@@ -13,7 +13,7 @@
     "build": "npx gulp --mode=production"
   },
   "engines": {
-    "node": ">=12"
+    "node": ">=14"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
