@@ -1,6 +1,6 @@
 {
   "name": "gulp-env-loader",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "A gulp plugin for loading environment variables and replacing them in the contents of files.",
   "main": "./libs/index.js",
   "types": "./types/index.d.ts",
